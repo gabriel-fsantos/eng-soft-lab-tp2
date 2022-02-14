@@ -1,0 +1,42 @@
+<mat-toolbar *ngIf="!logged" color="primary" class="toolbar">
+  <img src="../../assets/logo.png" height="50">
+
+  <a [routerLink]="['/home']" >Home</a>
+
+  <a [routerLink]="['/galeria']" >Galeria</a>
+
+  <a [routerLink]="['/agendamento']" >Agendamento</a>
+
+  <a [routerLink]="['/novo-endereco']" >Cadastrar Endereço</a>
+
+  <span class="example-spacer"></span>
+
+  <a [routerLink]="['/login']" >Login</a>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="logged" color="primary" class="toolbar">
+  <img src="../../assets/logo.png" height="50">
+
+  <a [routerLink]="['/novo-funcionario']" >Cadastrar funcionario</a>
+
+  <a [routerLink]="['/novo-paciente']" >Cadastrar paciente</a>
+
+  <a [routerLink]="['/funcionarios']" >Listar funcionarios</a>
+
+  <a [routerLink]="['/pacientes']" >Listar pacientes</a>
+
+  <a [routerLink]="['/agendamento-clientes']" >Agendamento clientes</a>
+
+  <a [routerLink]="['/agendamento-medico']" >Agendamento medico</a>
+
+  <span class="example-spacer"></span>
+
+</mat-toolbar>
+
+<div class="all">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer">
+  Rodapé
+</footer>

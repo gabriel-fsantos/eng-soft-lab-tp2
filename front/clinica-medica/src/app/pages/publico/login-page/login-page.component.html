@@ -1,0 +1,58 @@
+<div class="all">
+  <div class="login-box">
+    <div class="title">
+      <img src="../../../assets/logo.png" width="200">
+      <h1>Clínica Médica</h1>
+    </div>
+    <form
+      novalidate
+      name="loginForm"
+      [formGroup]="loginForm"
+      (ngSubmit)="handleLogin()"
+    >
+      <div class="inputs">
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="email"
+            placeholder="digite seu email aqui"
+          />
+          <mat-error>{{ getEmailErrorMessage() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Senha</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="digite sua senha"
+          />
+          <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="submit">
+        <button
+        color="primary"
+          mat-raised-button
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

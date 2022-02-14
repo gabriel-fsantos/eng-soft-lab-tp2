@@ -16,22 +16,24 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFilesAfterEnv": ["<rootDir>/test/setup.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup.js"
+    ]
   },
   "devDependencies": {
-    "apidoc": "^0.20.0",
-    "apidoc-markdown": "^0.2.1",
+    "apidoc": "^0.50.4",
+    "apidoc-markdown": "^7.0.4",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^25.1.0",
     "cross-env": "^7.0.2",
     "dotenv-safe": "^8.2.0",
-    "eslint": "^6.8.0",
+    "eslint": "^8.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.0",
     "eslint-plugin-standard": "^4.0.1",
-    "jest-cli": "^25.1.0",
+    "jest-cli": "^27.5.1",
     "mongodb-memory-server": "^6.3.3",
     "nock": "^12.0.2",
     "nodemon": "^2.0.2",
@@ -46,7 +48,7 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.9.0",
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.1",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "bodymen": "^1.1.1",
