@@ -1,0 +1,18 @@
+<div class="all">
+  <div class="card" *ngFor="let funcionario of funcionarios?.rows; index as i">
+    <mat-card-title>{{ funcionario.nome }}</mat-card-title>
+    <div style="margin-top: 10px;">Salario: {{ funcionario.salario }}</div>
+    <div style="margin-top: 10px;">Telefone: {{ funcionario.telefone }}</div>
+    <div style="margin-top: 10px;">Email: {{ funcionario.email }}</div>
+    <div style="margin-top: 10px;">Estado: {{ funcionario.estado }}</div>
+    <div style="margin-top: 10px;">Cidade: {{ funcionario.cidade }}</div>
+    <div style="margin-top: 10px;">Bairro: {{ funcionario.bairro }}</div>
+    <div style="margin-top: 10px;">Logradouro: {{ funcionario.logradouro }}</div>
+    <div style="margin-top: 10px;">CEP: {{ funcionario.cep }}</div>
+    <div style="margin-top: 10px;">Data de Cadastro: {{ funcionario.dataContrato | date: "dd/MM/yyyy" }}</div>
+
+    <div *ngIf="funcionario.especialidade" style="margin-top: 10px;">Especialidade: {{ funcionario.especialidade }}</div>
+    <div *ngIf="funcionario.especialidade" style="margin-top: 10px;">CRM: {{ funcionario.crm }}</div>
+
+  </div>
+</div>

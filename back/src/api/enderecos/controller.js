@@ -3,7 +3,7 @@ import { Endereco } from '.'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Endereco.count(query)
-    .then(count => endereco.find(query, select, cursor)
+    .then(count => Endereco.find(query, select, cursor)
       .then(enderecos => ({
         rows: enderecos.map((endereco) => endereco),
         count

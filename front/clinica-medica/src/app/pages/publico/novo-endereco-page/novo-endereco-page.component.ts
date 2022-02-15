@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
-import { PublicoService } from '../publico.service';
+import { GeralService } from '../../../geral.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,7 +14,7 @@ export class NovoEnderecoPageComponent implements OnInit {
   novoEnderecoForm: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder,
-      private readonly publicoService: PublicoService,
+      private readonly geralService: GeralService,
       private toastr: ToastrService) {
 
     this.novoEnderecoForm = this.formBuilder.group({
@@ -46,7 +46,7 @@ export class NovoEnderecoPageComponent implements OnInit {
       cidade: this.novoEnderecoForm.value.cidade,
       estado: this.novoEnderecoForm.value.estado
     };
-    this.publicoService.cadastrarEndereco(data).subscribe(res => {
+    this.geralService.cadastrarEndereco(data).subscribe(res => {
       this.toastr.success('Endereço cadastrado com sucesso!');
       this.novoEnderecoForm.reset();
     }, () => {

@@ -4,7 +4,9 @@ import { BasicStrategy } from 'passport-http'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import { jwtSecret, masterKey } from '../../config'
-import User, { schema } from '../../api/user/model'
+// import User, { schema } from '../../api/user/model'
+
+import Funcionario, { schema } from '../../api/funcionario/model'
 
 export const password = () => (req, res, next) =>
   passport.authenticate('password', { session: false }, (err, user, info) => {
@@ -22,7 +24,7 @@ export const password = () => (req, res, next) =>
 export const master = () =>
   passport.authenticate('master', { session: false })
 
-export const token = ({ required, roles = User.roles } = {}) => (req, res, next) =>
+export const token = ({ required } = {}) => (req, res, next) =>
   passport.authenticate('token', { session: false }, (err, user, info) => {
     if (err || (required && !user) || (required && !~roles.indexOf(user.role))) {
       return res.status(401).end()
@@ -40,7 +42,7 @@ passport.use('password', new BasicStrategy((email, password, done) => {
     if (err) done(err)
   })
 
-  User.findOne({ email }).then((user) => {
+  Funcionario.findOne({ email }).then((user) => {
     if (!user) {
       done(true)
       return null
@@ -68,7 +70,7 @@ passport.use('token', new JwtStrategy({
     ExtractJwt.fromAuthHeaderWithScheme('Bearer')
   ])
 }, ({ id }, done) => {
-  User.findById(id).then((user) => {
+  Funcionario.findById(id).then((user) => {
     done(null, user)
     return null
   }).catch(done)

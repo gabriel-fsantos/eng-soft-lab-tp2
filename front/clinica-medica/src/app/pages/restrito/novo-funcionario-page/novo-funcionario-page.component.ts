@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { PublicoService } from '../../publico/publico.service';
+import { GeralService } from '../../../geral.service';
 
 @Component({
   selector: 'app-novo-funcionario-page',
@@ -14,7 +14,7 @@ export class NovoFuncionarioPageComponent {
   novoFuncionarioForm: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder,
-      private readonly publicoService: PublicoService,
+      private readonly geralService: GeralService,
       private toastr: ToastrService) {
 
     this.novoFuncionarioForm = this.formBuilder.group({
@@ -77,7 +77,7 @@ export class NovoFuncionarioPageComponent {
       crm: this.novoFuncionarioForm.get('crm')?.value,
     };
 
-    this.publicoService.cadastrarFuncionario(data).subscribe(res => {
+    this.geralService.cadastrarFuncionario(data).subscribe(res => {
       this.toastr.success('Funcionário cadastrado com sucesso!');
       this.novoFuncionarioForm.reset();
     }, () => {

@@ -1,1 +1,9 @@
-<p>enderecos-page works!</p>
+<div class="all">
+  <div class="card" *ngFor="let endereco of enderecos?.rows; index as i">
+    <mat-card-title>CEP: {{ endereco.cep }}</mat-card-title>
+    <div style="margin-top: 10px;">Estado: {{ endereco.estado }}</div>
+    <div style="margin-top: 10px;">Cidade: {{ endereco.cidade }}</div>
+    <div style="margin-top: 10px;">Bairro: {{ endereco.bairro }}</div>
+    <div style="margin-top: 10px;">Logradouro: {{ endereco.logradouro }}</div>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
-import { PublicoService } from '../../publico/publico.service';
+import { GeralService } from '../../../geral.service';
 
 @Component({
   selector: 'app-novo-paciente-page',
@@ -14,7 +14,7 @@ export class NovoPacientePageComponent implements OnInit {
   novoPacienteForm: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder,
-      private readonly publicoService: PublicoService,
+      private readonly geralService: GeralService,
       private toastr: ToastrService) {
 
     this.novoPacienteForm = this.formBuilder.group({
@@ -68,10 +68,10 @@ export class NovoPacientePageComponent implements OnInit {
       estado: this.novoPacienteForm.get('estado')?.value,
       peso: this.novoPacienteForm.get('peso')?.value,
       altura: this.novoPacienteForm.get('altura')?.value,
-      tipoSanguineo: this.novoPacienteForm.get('tipoSanguinio')?.value
+      tipoSanguineo: this.novoPacienteForm.get('tipoSanguineo')?.value
     };
 
-    this.publicoService.cadastrarPaciente(data).subscribe(res => {
+    this.geralService.cadastrarPaciente(data).subscribe(res => {
       this.toastr.success('Funcionário cadastrado com sucesso!');
       this.novoPacienteForm.reset();
     }, () => {

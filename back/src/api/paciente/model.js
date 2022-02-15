@@ -1,4 +1,3 @@
-import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
@@ -7,6 +6,10 @@ import { env } from '../../config'
 const roles = ['paciente', 'admin']
 
 const pacienteSchema = new Schema({
+  nome: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     match: /^\S+@\S+\.\S+$/,
@@ -15,17 +18,16 @@ const pacienteSchema = new Schema({
     trim: true,
     lowercase: true
   },
-  telefone:{
-    type: Number,
+  telefone: {
+    type: String,
     required: true,
-    minlength: 8
   },
-  CEP: {
+  cep: {
     type: String,
     required: true,
     minlength: 6
   },
-  logadouro: {
+  logradouro: {
     type: String,
     required: true,
     minlength: 5
@@ -37,7 +39,7 @@ const pacienteSchema = new Schema({
   cidade: {
     type: String,
     required: true
-  }, 
+  },
   estado: {
     type: String,
     required: true
@@ -53,59 +55,15 @@ const pacienteSchema = new Schema({
   tipoSanguineo: {
     type: String,
     required: true
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6
-  },
-  name: {
-    type: String,
-    index: true,
-    trim: true
-  },
-  role: {
-    type: String,
-    enum: roles,
-    default: 'paciente'
-  },
-  picture: {
-    type: String,
-    trim: true
   }
 }, {
   timestamps: true
 })
 
-pacienteSchema.path('email').set(function (email) {
-  if (!this.picture || this.picture.indexOf('https://gravatar.com') === 0) {
-    const hash = crypto.createHash('md5').update(email).digest('hex')
-    this.picture = `https://gravatar.com/avatar/${hash}?d=identicon`
-  }
-
-  if (!this.name) {
-    this.name = email.replace(/^(.+)@.+$/, '$1')
-  }
-
-  return email
-})
-
-pacienteSchema.pre('save', function (next) {
-  if (!this.isModified('password')) return next()
-
-  /* istanbul ignore next */
-  const rounds = env === 'test' ? 1 : 9
-
-  bcrypt.hash(this.password, rounds).then((hash) => {
-    this.password = hash
-    next()
-  }).catch(next)
-})
-
 pacienteSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'nome']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
@@ -121,12 +79,7 @@ pacienteSchema.methods = {
   }
 
 }
-
-pacienteSchema.statics = {
-  roles
-}
-
-pacienteSchema.plugin(mongooseKeywords, { paths: ['email', 'name'] })
+pacienteSchema.plugin(mongooseKeywords, { paths: ['email', 'nome'] })
 
 const model = mongoose.model('Paciente', pacienteSchema)
 

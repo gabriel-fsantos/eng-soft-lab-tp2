@@ -1,3 +1,4 @@
+import { GeralService } from '../../../geral.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,7 +16,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private readonly formBuilder: FormBuilder,
               private readonly router: Router,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private readonly geralService: GeralService) {
       this.loginForm = this.formBuilder.group({
         email: [null, [
           Validators.required,
@@ -28,7 +30,26 @@ export class LoginPageComponent implements OnInit {
       });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.geralService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+      .subscribe((user: any) => {
+        console.log(user)
+        localStorage.setItem('user', user.token);
+        localStorage.setItem('id', user.user.id);
+        this.toastr.success('Logado com Sucesso');
+        // this.router.navigate(['/internal/home'])
+      }, (error: { status: number; }) => {
+         let messageErr;
+         if (error.status === 401) {
+          messageErr = 'Usuário e/ou senha incorretos.';
+         } else {
+          messageErr = 'Algo de errado aconteceu tente novamente mais tarde.';
+         }
+         this.toastr.error(messageErr, 'Error', {
+          timeOut: 3000,
+        });
+      });
+  }
 
   handleLogin() {
   }

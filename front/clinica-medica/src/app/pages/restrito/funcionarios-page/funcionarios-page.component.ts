@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { PublicoService } from '../../publico/publico.service';
+import { GeralService } from '../../../geral.service';
 
 @Component({
   selector: 'app-funcionarios-page',
@@ -11,11 +11,11 @@ export class FuncionariosPageComponent implements OnInit {
 
   funcionarios: any;
 
-  constructor(private readonly publicoService: PublicoService,
+  constructor(private readonly geralService: GeralService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.publicoService.listarFuncionarios().subscribe(res => {
+    this.geralService.listarFuncionarios().subscribe(res => {
       console.log(res);
       this.funcionarios = res;
     }, () => {

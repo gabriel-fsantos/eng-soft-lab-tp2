@@ -1,1 +1,15 @@
-<p>pacientes-page works!</p>
+<div class="all">
+  <div class="card" *ngFor="let paciente of pacientes?.rows; index as i">
+    <mat-card-title>{{ paciente.nome }}</mat-card-title>
+    <div style="margin-top: 10px;">Telefone: {{ paciente.telefone }}</div>
+    <div style="margin-top: 10px;">Email: {{ paciente.email }}</div>
+    <div style="margin-top: 10px;">Estado: {{ paciente.estado }}</div>
+    <div style="margin-top: 10px;">Cidade: {{ paciente.cidade }}</div>
+    <div style="margin-top: 10px;">Bairro: {{ paciente.bairro }}</div>
+    <div style="margin-top: 10px;">Logradouro: {{ paciente.logradouro }}</div>
+    <div style="margin-top: 10px;">CEP: {{ paciente.cep }}</div>
+    <div style="margin-top: 10px;">Peso: {{ paciente.peso }}</div>
+    <div style="margin-top: 10px;">Altura: {{ paciente.altura }}</div>
+    <div style="margin-top: 10px;">Tipo Sanguineo: {{ paciente.tipoSanguineo }}</div>
+  </div>
+</div>

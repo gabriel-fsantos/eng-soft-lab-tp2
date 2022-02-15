@@ -15,7 +15,7 @@ import { PageGeralComponent } from './page-geral/page-geral.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PageGeralComponent
+    PageGeralComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,9 +24,9 @@ import { PageGeralComponent } from './page-geral/page-geral.component';
     HttpClientModule,
     ToastrModule.forRoot(),
     PagesModule,
-    SharedModule
+    SharedModule,
   ],
-  providers: [SharedModule],
+  providers: [],
   exports: [],
   bootstrap: [AppComponent],
 

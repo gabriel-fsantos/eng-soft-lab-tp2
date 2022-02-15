@@ -1,7 +1,16 @@
 import mongoose, { Schema } from 'mongoose'
 
 const agendamentoSchema = new Schema({
-  especialidadeDesejada: {
+  nome: {
+    type: String
+  },
+  email: {
+    type: String
+  },
+  telefone: {
+    type: String
+  },
+  especialidade: {
     type: String
   },
   nomeMedico: {
@@ -11,17 +20,8 @@ const agendamentoSchema = new Schema({
     type: Date
   },
   horarioConsulta: {
-    type: Date
-  },
-  nomePaciente: {
     type: String
   },
-  email: {
-    type: String  
-  },
-  telefone: {
-    type: Number
-  }
 }, {
   timestamps: true
 });

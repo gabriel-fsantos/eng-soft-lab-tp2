@@ -1,1 +1,9 @@
-<p>agendamento-clientes-page works!</p>
+<div class="all">
+  <div class="card" *ngFor="let agendamento of agendamentos?.rows; index as i">
+    <mat-card-title>Nome: {{ agendamento.cep }}</mat-card-title>
+    <div style="margin-top: 10px;">Estado: {{ agendamento.estado }}</div>
+    <div style="margin-top: 10px;">Cidade: {{ agendamento.cidade }}</div>
+    <div style="margin-top: 10px;">Bairro: {{ agendamento.bairro }}</div>
+    <div style="margin-top: 10px;">Logradouro: {{ agendamento.logradouro }}</div>
+  </div>
+</div>

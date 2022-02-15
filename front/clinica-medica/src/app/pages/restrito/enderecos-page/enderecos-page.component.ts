@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { GeralService } from '../../../geral.service';
 
 @Component({
   selector: 'app-enderecos-page',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnderecosPageComponent implements OnInit {
 
-  constructor() { }
+  enderecos: any;
+
+  constructor(private readonly geralService: GeralService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.geralService.listarEnderecos().subscribe(res => {
+      console.log(res);
+      this.enderecos = res;
+    }, () => {
+      this.toastr.error('Algo de errado aconteceu!');
+    });
   }
-
 }

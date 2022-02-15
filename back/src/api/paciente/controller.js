@@ -6,7 +6,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Paciente.count(query)
     .then(count => Paciente.find(query, select, cursor)
       .then(pacientes => ({
-        rows: pacientes.map((paciente) => paciente.view()),
+        rows: pacientes.map((paciente) => paciente),
         count
       }))
     )

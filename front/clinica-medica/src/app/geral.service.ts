@@ -7,15 +7,25 @@ import { HttpService } from 'src/service/http-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PublicoService {
+export class GeralService {
 
   // Endpoints
   private readonly endpointEnderecos: string = 'endereco';
-  private readonly endpointFuncionario: string = 'funcionaro';
+  private readonly endpointFuncionario: string = 'funcionario';
   private readonly endpointPaciente: string = 'paciente';
-  // private readonly endpointEnderecos: string = 'endereco';
+  private readonly endpointAgendamentos: string = 'agendamento';
+
+  private readonly endpointAuth: string = 'auth';
 
   constructor(private readonly httpService: HttpService) { }
+
+  login(email: string, password: string) {
+    const auth = btoa(`${email}:${password}`);
+    return this.httpService.login(this.endpointAuth, null, {Authorization: 'Basic ' + auth})
+    .pipe(map(res => {
+        return res;
+    }));
+  }
 
   cadastrarEndereco(data: any) {
     return this.httpService.genericPost(this.endpointEnderecos, data)
@@ -45,8 +55,29 @@ export class PublicoService {
       }));
   }
 
-  listarPaciente() {
+  listarPacientes() {
     return this.httpService.genericGet(this.endpointPaciente)
+      .pipe(map(res => {
+        return res;
+      }));
+  }
+
+  listarEnderecos() {
+    return this.httpService.genericGet(this.endpointEnderecos)
+      .pipe(map(res => {
+        return res;
+      }));
+  }
+
+  listarAgendamentos() {
+    return this.httpService.genericGet(this.endpointAgendamentos)
+      .pipe(map(res => {
+        return res;
+      }));
+  }
+
+  listarAgendamentosMedico(idMedico: string) {
+    return this.httpService.genericGet(this.endpointAgendamentos)
       .pipe(map(res => {
         return res;
       }));
