@@ -20,7 +20,6 @@ export const show = ({ params }, res, next) =>
     .catch(next)
 
 export const create = ({ bodymen: { body } }, res, next) => {
-
   Endereco.create(body)
     .then((endereco) => {
       console.log(endereco)
@@ -34,19 +33,7 @@ export const create = ({ bodymen: { body } }, res, next) => {
 export const update = ({ bodymen: { body }, params, user }, res, next) =>
   Endereco.findById(params.id === 'me' ? user.id : params.id)
     .then(notFound(res))
-    .then((result) => {
-      if (!result) return null
-      const isAdmin = user.role === 'admin'
-      const isSelfUpdate = user.id === result.id
-      if (!isSelfUpdate && !isAdmin) {
-        res.status(401).json({
-          valid: false,
-          message: 'You can\'t change other user\'s data'
-        })
-        return null
-      }
-      return result
-    })
+    .then((result) => result)
     .then((user) => user ? Object.assign(user, body).save() : null)
     .then((user) => user ? user.view(true) : null)
     .then(success(res))

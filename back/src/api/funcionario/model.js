@@ -1,11 +1,6 @@
-import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
-import { env } from '../../config'
-import internal from 'stream'
-
-const roles = ['funcionario', 'admin']
 
 const funcionarioSchema = new Schema({
   email: {
@@ -16,15 +11,23 @@ const funcionarioSchema = new Schema({
     trim: true,
     lowercase: true
   },
-  CEP:{
-      type: String,
-      required: true,
-      minlength: 6,
-      maxlength: 8
+  cep:{
+    type: String,
+    required: true,
+    minlength: 6,
+    maxlength: 8
+  },
+  especialidade: {
+    type: String,
+    minlength: 5
+  },
+  crm: {
+    type: String,
+    minlength: 5
   },
   salario:{
     type: String,
-    required: true,
+    required: true
   },
   bairro:{
     type: String,
@@ -42,72 +45,38 @@ const funcionarioSchema = new Schema({
     minlength: 3
   },
   telefone: {
-    type: Number,
+    type: String,
     required: true,
     minlength: 10,
     maxlength: 11
   },
-  logadouro: {
+  logradouro: {
     type: String,
     required: true,
     minlength: 6
   },
-  dataInicioDeContrato: {
+  dataContrato: {
     type: Date,
     required: true
   },
-  password: {
+  senha: {
     type: String,
     required: true,
     minlength: 6
   },
-  name: {
+  nome: {
     type: String,
     index: true,
-    trim: true
-  },
-  role: {
-    type: String,
-    enum: roles,
-    default: 'funcionario'
-  },
-  picture: {
-    type: String,
     trim: true
   }
 }, {
   timestamps: true
 })
 
-funcionarioSchema.path('email').set(function (email) {
-  if (!this.picture || this.picture.indexOf('https://gravatar.com') === 0) {
-    const hash = crypto.createHash('md5').update(email).digest('hex')
-    this.picture = `https://gravatar.com/avatar/${hash}?d=identicon`
-  }
-
-  if (!this.name) {
-    this.name = email.replace(/^(.+)@.+$/, '$1')
-  }
-
-  return email
-})
-
-funcionarioSchema.pre('save', function (next) {
-  if (!this.isModified('password')) return next()
-
-  /* istanbul ignore next */
-  const rounds = env === 'test' ? 1 : 9
-
-  bcrypt.hash(this.password, rounds).then((hash) => {
-    this.password = hash
-    next()
-  }).catch(next)
-})
-
 funcionarioSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'name']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
@@ -124,11 +93,7 @@ funcionarioSchema.methods = {
 
 }
 
-funcionarioSchema.statics = {
-  roles
-}
-
-funcionarioSchema.plugin(mongooseKeywords, { paths: ['email', 'name'] })
+funcionarioSchema.plugin(mongooseKeywords, { paths: ['email', 'nome'] })
 
 const model = mongoose.model('Funcionario', funcionarioSchema)
 
