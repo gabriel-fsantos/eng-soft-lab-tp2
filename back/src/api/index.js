@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import user from './user'
 import auth from './auth'
 import endereco from './enderecos'

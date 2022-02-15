@@ -2,7 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { Endereco } from '.'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-Endereco.count(query)
+  Endereco.count(query)
     .then(count => endereco.find(query, select, cursor)
       .then(enderecos => ({
         rows: enderecos.map((endereco) => endereco),
@@ -13,15 +13,13 @@ Endereco.count(query)
     .catch(next)
 
 export const show = ({ params }, res, next) =>
-Endereco.findById(params.id)
+  Endereco.findById(params.id)
     .then(notFound(res))
     .then((user) => user)
     .then(success(res))
     .catch(next)
 
 export const create = ({ bodymen: { body } }, res, next) => {
-
-  console.log({ bodymen: { body } })
 
   Endereco.create(body)
     .then((endereco) => {
@@ -33,9 +31,8 @@ export const create = ({ bodymen: { body } }, res, next) => {
     });
 }
 
-
 export const update = ({ bodymen: { body }, params, user }, res, next) =>
-Endereco.findById(params.id === 'me' ? user.id : params.id)
+  Endereco.findById(params.id === 'me' ? user.id : params.id)
     .then(notFound(res))
     .then((result) => {
       if (!result) return null
@@ -56,7 +53,7 @@ Endereco.findById(params.id === 'me' ? user.id : params.id)
     .catch(next)
 
 export const destroy = ({ params }, res, next) =>
-Endereco.findById(params.id)
+  Endereco.findById(params.id)
     .then(notFound(res))
     .then((user) => user ? user.remove() : null)
     .then(success(res, 204))

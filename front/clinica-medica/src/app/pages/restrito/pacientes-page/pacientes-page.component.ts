@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+import { PublicoService } from '../../publico/publico.service';
 
 @Component({
   selector: 'app-pacientes-page',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PacientesPageComponent implements OnInit {
 
-  constructor() { }
+  pacientes: any;
+
+  constructor(private readonly publicoService: PublicoService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.publicoService.listarFuncionarios().subscribe(res => {
+      console.log(res);
+      this.pacientes = res;
+    }, () => {
+      this.toastr.error('Algo de errado aconteceu!');
+    });
   }
 
 }

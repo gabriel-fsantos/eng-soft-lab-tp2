@@ -39,7 +39,6 @@ export class NovoEnderecoPageComponent implements OnInit {
   ngOnInit(): void { }
 
   cadatsrarEndereco() {
-    console.log(this.novoEnderecoForm.value);
     const data = {
       cep: this.novoEnderecoForm.value.cep,
       logradouro: this.novoEnderecoForm.value.logradouro,
@@ -47,13 +46,12 @@ export class NovoEnderecoPageComponent implements OnInit {
       cidade: this.novoEnderecoForm.value.cidade,
       estado: this.novoEnderecoForm.value.estado
     };
-
     this.publicoService.cadastrarEndereco(data).subscribe(res => {
-      console.log(res);
       this.toastr.success('Endereço cadastrado com sucesso!');
       this.novoEnderecoForm.reset();
+    }, () => {
+      this.toastr.error('Algo de errado aconteceu!');
     });
-
   }
 
 }

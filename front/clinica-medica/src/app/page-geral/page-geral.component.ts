@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page-geral',
   templateUrl: './page-geral.component.html',
   styleUrls: ['./page-geral.component.scss']
 })
-export class PageGeralComponent implements OnInit {
+export class PageGeralComponent {
 
-  constructor(private router: Router) { }
+  logged = true;
 
-  logged = !true;
-
-  ngOnInit(): void { }
+  constructor() { }
 
 }

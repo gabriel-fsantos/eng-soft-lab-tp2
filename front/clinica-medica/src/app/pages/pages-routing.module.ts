@@ -11,6 +11,7 @@ import { NovoFuncionarioPageComponent } from './restrito/novo-funcionario-page/n
 import { NovoPacientePageComponent } from './restrito/novo-paciente-page/novo-paciente-page.component';
 import { FuncionariosPageComponent } from './restrito/funcionarios-page/funcionarios-page.component';
 import { PacientesPageComponent } from './restrito/pacientes-page/pacientes-page.component';
+import { EnderecosPageComponent } from './restrito/enderecos-page/enderecos-page.component';
 import { AgendamentoClientesPageComponent } from './restrito/agendamento-clientes-page/agendamento-clientes-page.component';
 import { AgendamentoMedicoPageComponent } from './restrito/agendamento-medico-page/agendamento-medico-page.component';
 
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'pacientes',
     component: PacientesPageComponent,
+  },
+  {
+    path: 'enderecos',
+    component: EnderecosPageComponent,
   },
   {
     path: 'agendamento-clientes',

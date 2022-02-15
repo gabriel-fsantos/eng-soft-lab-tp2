@@ -25,14 +25,14 @@ export class HttpService {
       .pipe(map((response: T) => response));
   }
 
-  // genericPost<T>(endpoint: string, data: any, headers: any): Observable<T> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders(headers)
-  //   };
-  //   const url = `${this.apiUrl}/${endpoint}`;
-  //   return this.http.post<T>(url, data, httpOptions)
-  //     .pipe(map((response: T) => response));
-  // }
+  login<T>(endpoint: string, data: any, headers: any): Observable<T> {
+    const httpOptions = {
+      headers: new HttpHeaders(headers)
+    };
+    const url = `${this.apiUrl}/${endpoint}`;
+    return this.http.post<T>(url, data, httpOptions)
+      .pipe(map((response: T) => response));
+  }
 
   genericPost<T>(endpoint: string, data: any): Observable<T> {
     const url = `${this.apiUrl}/${endpoint}`;
