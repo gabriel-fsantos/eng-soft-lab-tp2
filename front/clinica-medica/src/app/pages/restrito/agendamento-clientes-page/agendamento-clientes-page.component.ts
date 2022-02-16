@@ -17,7 +17,6 @@ export class AgendamentoClientesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.geralService.listarAgendamentos().subscribe(res => {
-      console.log(res);
       this.agendamentos = res;
     }, () => {
       this.toastr.error('Algo de errado aconteceu!');

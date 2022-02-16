@@ -16,7 +16,6 @@ export class FuncionariosPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.geralService.listarFuncionarios().subscribe(res => {
-      console.log(res);
       this.funcionarios = res;
     }, () => {
       this.toastr.error('Algo de errado aconteceu!');

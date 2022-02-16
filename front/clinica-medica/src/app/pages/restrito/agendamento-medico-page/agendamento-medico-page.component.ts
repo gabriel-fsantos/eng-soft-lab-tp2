@@ -19,7 +19,6 @@ export class AgendamentoMedicoPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.geralService.listarAgendamentos().subscribe((res: any )=> {
-      console.log(res);
       const aux: any[] = [];
       res.rows.forEach((element: any) => {
         if (element.nomeMedico === this.nomeMedico) {

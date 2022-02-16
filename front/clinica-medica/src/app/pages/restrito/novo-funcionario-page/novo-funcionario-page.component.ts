@@ -63,7 +63,6 @@ export class NovoFuncionarioPageComponent implements OnInit {
   ngOnInit() {
     this.geralService.listarEnderecos().subscribe((res: any) => {
       this.enderecos = res.rows;
-      console.log(this.enderecos);
     });
 
     this.novoFuncionarioForm.valueChanges

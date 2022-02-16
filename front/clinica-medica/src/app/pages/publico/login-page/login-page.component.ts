@@ -34,7 +34,6 @@ export class LoginPageComponent {
   handleLogin() {
     this.geralService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
       .subscribe((user: any) => {
-        console.log(user);
         if (user.user.crm) {
           localStorage.setItem('eMedico', 'true');
         }

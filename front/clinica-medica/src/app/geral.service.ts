@@ -89,11 +89,4 @@ export class GeralService {
       }));
   }
 
-  listarAgendamentosMedico(idMedico: string) {
-    return this.httpService.genericGet(this.endpointAgendamentos)
-      .pipe(map(res => {
-        return res;
-      }));
-  }
-
 }

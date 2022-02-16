@@ -57,11 +57,11 @@
           appearance="outline"
         >
           <mat-label>Especialidade</mat-label>
-          <input
-            matInput
-            type="text"
-            formControlName="especialidade"
-          />
+          <mat-select (selectionChange)="selectEspecialidade($event)" [formControl]="especialidadeControl" required>
+            <mat-option *ngFor="let especialidade of especialidades" [value]="especialidade">
+              {{ especialidade }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field
@@ -70,11 +70,11 @@
           appearance="outline"
         >
           <mat-label>Nome Medico</mat-label>
-          <input
-            matInput
-            type="text"
-            formControlName="nomeMedico"
-          />
+          <mat-select (selectionChange)="selectMedico($event)" [formControl]="medicoControl" required>
+            <mat-option *ngFor="let medico of medicosSelect" [value]="medico.nome">
+              {{ medico.nome }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field
@@ -97,11 +97,11 @@
           appearance="outline"
         >
           <mat-label>Horario Consulta</mat-label>
-          <input
-            matInput
-            type="text"
-            formControlName="horarioConsulta"
-          />
+          <mat-select (selectionChange)="selectHorario($event)" [formControl]="horarioConsultaControl" required>
+            <mat-option *ngFor="let horario of horariosDisponiveisSelect" [value]="horario">
+              {{ horario }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
       </div>

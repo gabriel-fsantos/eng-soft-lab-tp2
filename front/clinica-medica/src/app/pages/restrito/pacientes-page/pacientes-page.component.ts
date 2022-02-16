@@ -17,7 +17,6 @@ export class PacientesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.geralService.listarPacientes().subscribe(res => {
-      console.log(res);
       this.pacientes = res;
     }, () => {
       this.toastr.error('Algo de errado aconteceu!');

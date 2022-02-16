@@ -16,7 +16,6 @@ export class EnderecosPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.geralService.listarEnderecos().subscribe(res => {
-      console.log(res);
       this.enderecos = res;
     }, () => {
       this.toastr.error('Algo de errado aconteceu!');
