@@ -23,6 +23,16 @@
   background-color: #76daed;
   color: white;
   font-weight: 600;
+  display: flex;
+  justify-content: space-around;
+  font-family: calibri;
+	font-weight: bold;
+	color: #6d6d6d;
+	font-size: 16px;
+}
+.img{
+ width: 30px;
+ height: 30px;
 }
 
 a {
@@ -34,3 +44,4 @@ a {
 a:hover {
   text-decoration: underline white;
 }
+
