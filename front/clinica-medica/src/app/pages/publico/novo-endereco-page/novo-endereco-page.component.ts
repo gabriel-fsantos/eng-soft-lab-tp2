@@ -38,7 +38,7 @@ export class NovoEnderecoPageComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  cadatsrarEndereco() {
+  cadastrarEndereco() {
     const data = {
       cep: this.novoEnderecoForm.value.cep,
       logradouro: this.novoEnderecoForm.value.logradouro,

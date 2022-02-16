@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { map } from 'rxjs';
 
@@ -9,15 +9,21 @@ import { HttpService } from 'src/service/http-service.service';
 })
 export class GeralService {
 
+  loginEvent = new EventEmitter<boolean>();
+
   // Endpoints
   private readonly endpointEnderecos: string = 'endereco';
-  private readonly endpointFuncionario: string = 'funcionario';
-  private readonly endpointPaciente: string = 'paciente';
+  private readonly endpointFuncionarios: string = 'funcionario';
+  private readonly endpointPacientes: string = 'paciente';
   private readonly endpointAgendamentos: string = 'agendamento';
 
   private readonly endpointAuth: string = 'auth';
 
   constructor(private readonly httpService: HttpService) { }
+
+  loginEventEmitter(logged: boolean) {
+    this.loginEvent.emit(logged);
+  }
 
   login(email: string, password: string) {
     const auth = btoa(`${email}:${password}`);
@@ -34,29 +40,36 @@ export class GeralService {
       }));
   }
 
+  cadastrarAgendamento(data: any) {
+    return this.httpService.genericPost(this.endpointAgendamentos, data)
+      .pipe(map(res => {
+        return res;
+      }));
+  }
+
   cadastrarFuncionario(data: any) {
-    return this.httpService.genericPost(this.endpointFuncionario, data)
+    return this.httpService.genericPost(this.endpointFuncionarios, data)
       .pipe(map(res => {
         return res;
       }));
   }
 
   cadastrarPaciente(data: any) {
-    return this.httpService.genericPost(this.endpointPaciente, data)
+    return this.httpService.genericPost(this.endpointPacientes, data)
       .pipe(map(res => {
         return res;
       }));
   }
 
   listarFuncionarios() {
-    return this.httpService.genericGet(this.endpointFuncionario)
+    return this.httpService.genericGet(this.endpointFuncionarios)
       .pipe(map(res => {
         return res;
       }));
   }
 
   listarPacientes() {
-    return this.httpService.genericGet(this.endpointPaciente)
+    return this.httpService.genericGet(this.endpointPacientes)
       .pipe(map(res => {
         return res;
       }));

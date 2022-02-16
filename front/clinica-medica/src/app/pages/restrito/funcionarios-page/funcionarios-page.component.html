@@ -9,7 +9,7 @@
     <div style="margin-top: 10px;">Bairro: {{ funcionario.bairro }}</div>
     <div style="margin-top: 10px;">Logradouro: {{ funcionario.logradouro }}</div>
     <div style="margin-top: 10px;">CEP: {{ funcionario.cep }}</div>
-    <div style="margin-top: 10px;">Data de Cadastro: {{ funcionario.dataContrato | date: "dd/MM/yyyy" }}</div>
+    <div style="margin-top: 10px;">Data de Cadastro: {{ funcionario.dataContrato }}</div>
 
     <div *ngIf="funcionario.especialidade" style="margin-top: 10px;">Especialidade: {{ funcionario.especialidade }}</div>
     <div *ngIf="funcionario.especialidade" style="margin-top: 10px;">CRM: {{ funcionario.crm }}</div>

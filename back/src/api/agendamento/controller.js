@@ -3,7 +3,7 @@ import { Agendamento } from '.'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Agendamento.count(query)
-    .then(count => agendamento.find(query, select, cursor)
+    .then(count => Agendamento.find(query, select, cursor)
       .then(agendamentos => ({
         rows: agendamentos.map((agendamento) => agendamento),
         count

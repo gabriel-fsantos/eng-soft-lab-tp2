@@ -23,13 +23,10 @@ export const show = ({ params }, res, next) =>
 export const showMe = ({ medico }, res) =>
   res.json(medico.view(true))
 
-export const create = ({ bodymen: { body } }, res, next) =>
+  export const create = ({ bodymen: { body } }, res, next) =>
   Funcionario.create(body)
-    .then(medico => {
-      sign(medico.id)
-        .then((token) => ({ token, medico: medico.view(true) }))
-        .then(success(res, 201))
-    })
+    .then((user) => user.view(true))
+    .then(success(res, 201))
     .catch((err) => {
       /* istanbul ignore else */
       if (err.name === 'MongoError' && err.code === 11000) {

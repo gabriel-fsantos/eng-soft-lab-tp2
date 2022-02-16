@@ -1,1 +1,10 @@
-<p>agendamento-medico-page works!</p>
+<div class="all">
+  <div class="card" *ngFor="let agendamento of agendamentos?.rows; index as i">
+    <mat-card-title>Paciente: {{ agendamento.nome }}</mat-card-title>
+    <div style="margin-top: 10px;">Email: {{ agendamento.email }}</div>
+    <div style="margin-top: 10px;">Telefone: {{ agendamento.telefone }}</div>
+    <div style="margin-top: 10px;">Medico: {{ agendamento.nomeMedico }}</div>
+    <div style="margin-top: 10px;">Especialidade: {{ agendamento.especialidade }}</div>
+    <div style="margin-top: 10px;">Data/hora: {{ agendamento.dataConsulta }} - {{ agendamento.horarioConsulta }}</div>
+  </div>
+</div>

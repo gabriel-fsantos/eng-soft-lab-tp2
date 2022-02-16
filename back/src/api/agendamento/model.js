@@ -17,7 +17,7 @@ const agendamentoSchema = new Schema({
     type: String
   },
   dataConsulta: {
-    type: Date
+    type: String
   },
   horarioConsulta: {
     type: String

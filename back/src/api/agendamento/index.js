@@ -6,18 +6,18 @@ import { schema } from './model'
 export Agendamento, { schema } from './model'
 
 const router = new Router()
-const { especialidadeDesejada, nomeMedico, dataConsulta, horarioConsulta, nomePaciente, email, telefone } = schema.tree
+const { especialidade, nomeMedico, dataConsulta, horarioConsulta, nome, email, telefone,  } = schema.tree
 
 router.get('/',
   query(),
   index)
 
 router.post('/',
-  body({ especialidadeDesejada, nomeMedico, dataConsulta, horarioConsulta, nomePaciente, email, telefone }),
+  body({ especialidade, nomeMedico, dataConsulta, horarioConsulta, nome, email, telefone }),
   create)
 
 router.put('/:id',
-  body({ especialidadeDesejada, nomeMedico, dataConsulta, horarioConsulta, nomePaciente, email, telefone }),
+  body({ especialidade, nomeMedico, dataConsulta, horarioConsulta, nome, email, telefone }),
   update)
 
 router.delete('/:id',

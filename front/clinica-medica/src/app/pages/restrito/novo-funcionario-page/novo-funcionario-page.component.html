@@ -7,9 +7,13 @@
       novalidate
       name="loginForm"
       [formGroup]="novoFuncionarioForm"
-      (ngSubmit)="cadatsrarEndereco()"
+      (ngSubmit)="cadastrarFuncionario()"
     >
       <div class="inputs">
+
+        <mat-slide-toggle (change)="toogle()" [checked]="eMedico">
+          <mat-label>Medico</mat-label>
+        </mat-slide-toggle>
 
         <mat-form-field
           color="primary"
@@ -54,12 +58,14 @@
           color="primary"
           [floatLabel]="'always'"
           appearance="outline"
+          (onChange)="onChangeCep()"
         >
           <mat-label>Cep</mat-label>
           <input
             matInput
             type="text"
             formControlName="cep"
+            (onChange)="onChangeCep()"
           />
         </mat-form-field>
 
@@ -150,12 +156,13 @@
           <mat-label>Senha</mat-label>
           <input
             matInput
-            type="text"
+            type="password"
             formControlName="senha"
           />
         </mat-form-field>
 
         <mat-form-field
+          *ngIf="eMedico"
           color="primary"
           [floatLabel]="'always'"
           appearance="outline"
@@ -169,6 +176,7 @@
         </mat-form-field>
 
         <mat-form-field
+          *ngIf="eMedico"
           color="primary"
           [floatLabel]="'always'"
           appearance="outline"

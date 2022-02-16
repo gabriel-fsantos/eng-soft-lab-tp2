@@ -9,7 +9,7 @@ import { jwtSecret, masterKey } from '../../config'
 import Funcionario, { schema } from '../../api/funcionario/model'
 
 export const password = () => (req, res, next) =>
-  passport.authenticate('password', { session: false }, (err, user, info) => {
+  passport.authenticate('senha', { session: false }, (err, user, info) => {
     if (err && err.param) {
       return res.status(400).json(err)
     } else if (err || !user) {
@@ -35,10 +35,10 @@ export const token = ({ required } = {}) => (req, res, next) =>
     })
   })(req, res, next)
 
-passport.use('password', new BasicStrategy((email, password, done) => {
-  const userSchema = new Schema({ email: schema.tree.email, password: schema.tree.password })
+passport.use('senha', new BasicStrategy((email, senha, done) => {
+  const userSchema = new Schema({ email: schema.tree.email, senha: schema.tree.senha })
 
-  userSchema.validate({ email, password }, (err) => {
+  userSchema.validate({ email, senha }, (err) => {
     if (err) done(err)
   })
 
@@ -47,7 +47,7 @@ passport.use('password', new BasicStrategy((email, password, done) => {
       done(true)
       return null
     }
-    return user.authenticate(password, user.password).then((user) => {
+    return user.authenticate(senha, user.senha).then((user) => {
       done(null, user)
       return null
     }).catch(done)

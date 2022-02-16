@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="logged" color="primary" class="toolbar">
+<mat-toolbar *ngIf="!logged" color="primary" class="toolbar">
   <img src="../../assets/logo.png" height="50">
 
   <a [routerLink]="['/home']" >Home</a>
@@ -21,17 +21,19 @@
 
   <a [routerLink]="['/novo-paciente']" >Cadastrar paciente</a>
 
-  <a [routerLink]="['/funcionarios']" >Listar funcionarios</a>
+  <a [routerLink]="['/funcionarios']" >Funcionarios</a>
 
-  <a [routerLink]="['/pacientes']" >Listar pacientes</a>
+  <a [routerLink]="['/pacientes']" >Pacientes</a>
 
-  <a [routerLink]="['/enderecos']" >Listar endereços</a>
+  <a [routerLink]="['/enderecos']" >Endereços</a>
 
-  <a [routerLink]="['/agendamento-clientes']" >Agendamento clientes</a>
+  <a [routerLink]="['/agendamento-clientes']" >Agendamentos</a>
 
-  <a [routerLink]="['/agendamento-medico']" >Agendamento medico</a>
+  <a *ngIf="getLocalStorage() === 'true'" [routerLink]="['/agendamento-medico']" >Meus agendamentos</a>
 
   <span class="example-spacer"></span>
+
+  <a [routerLink]="['/home']" (click)="sair()" >Sair</a>
 
 </mat-toolbar>
 

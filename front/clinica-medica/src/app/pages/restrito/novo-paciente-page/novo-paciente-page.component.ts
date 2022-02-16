@@ -56,7 +56,7 @@ export class NovoPacientePageComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  cadatsrarEndereco() {
+  cadastrarPaciente() {
     const data = {
       nome: this.novoPacienteForm.get('nome')?.value,
       email: this.novoPacienteForm.get('email')?.value,

@@ -9,9 +9,11 @@ import { GeralService } from '../../../geral.service';
   templateUrl: './novo-funcionario-page.component.html',
   styleUrls: ['./novo-funcionario-page.component.scss']
 })
-export class NovoFuncionarioPageComponent {
+export class NovoFuncionarioPageComponent implements OnInit {
 
   novoFuncionarioForm: FormGroup;
+  enderecos: any;
+  eMedico = false;
 
   constructor(private readonly formBuilder: FormBuilder,
       private readonly geralService: GeralService,
@@ -52,16 +54,29 @@ export class NovoFuncionarioPageComponent {
         Validators.required
       ]],
       especialidade: [null, [
-        Validators.required
       ]],
       crm: [null, [
-        Validators.required
       ]],
     });
   }
 
-  cadatsrarEndereco() {
-    const data = {
+  ngOnInit() {
+    this.geralService.listarEnderecos().subscribe((res: any) => {
+      this.enderecos = res.rows;
+      console.log(this.enderecos);
+    });
+
+    this.novoFuncionarioForm.valueChanges
+      .subscribe(value=> {
+        if (this.novoFuncionarioForm.dirty) {
+          this.onChangeCep();
+        }
+      });
+
+  }
+
+  cadastrarFuncionario() {
+    const data: any = {
       nome: this.novoFuncionarioForm.get('nome')?.value,
       email: this.novoFuncionarioForm.get('email')?.value,
       telefone: this.novoFuncionarioForm.get('telefone')?.value,
@@ -73,9 +88,12 @@ export class NovoFuncionarioPageComponent {
       dataContrato: this.novoFuncionarioForm.get('dataContrato')?.value,
       salario: this.novoFuncionarioForm.get('salario')?.value,
       senha: this.novoFuncionarioForm.get('senha')?.value,
-      especialidade: this.novoFuncionarioForm.get('especialidade')?.value,
-      crm: this.novoFuncionarioForm.get('crm')?.value,
     };
+
+    if (this.eMedico) {
+      data.especialidade = this.novoFuncionarioForm.get('especialidade')?.value
+      data.crm = this.novoFuncionarioForm.get('crm')?.value
+    }
 
     this.geralService.cadastrarFuncionario(data).subscribe(res => {
       this.toastr.success('Funcionário cadastrado com sucesso!');
@@ -83,6 +101,23 @@ export class NovoFuncionarioPageComponent {
     }, () => {
       this.toastr.error('Algo de errado aconteceu!');
     });
+  }
+
+  toogle() {
+    this.eMedico = !this.eMedico;
+  }
+
+  onChangeCep() {
+    const cep = this.novoFuncionarioForm.get('cep')?.value;
+    const endereco = this.enderecos.find((endereco: any) => endereco.cep === cep);
+    if (endereco) {
+      this.novoFuncionarioForm.patchValue({
+        logradouro: endereco.logradouro,
+        bairro: endereco.bairro,
+        cidade: endereco.cidade,
+        estado: endereco.estado,
+      });
+    }
   }
 
 }

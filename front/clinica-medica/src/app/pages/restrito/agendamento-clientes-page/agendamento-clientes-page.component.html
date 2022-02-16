@@ -1,9 +1,10 @@
 <div class="all">
   <div class="card" *ngFor="let agendamento of agendamentos?.rows; index as i">
-    <mat-card-title>Nome: {{ agendamento.cep }}</mat-card-title>
-    <div style="margin-top: 10px;">Estado: {{ agendamento.estado }}</div>
-    <div style="margin-top: 10px;">Cidade: {{ agendamento.cidade }}</div>
-    <div style="margin-top: 10px;">Bairro: {{ agendamento.bairro }}</div>
-    <div style="margin-top: 10px;">Logradouro: {{ agendamento.logradouro }}</div>
+    <mat-card-title>Paciente: {{ agendamento.nome }}</mat-card-title>
+    <div style="margin-top: 10px;">Email: {{ agendamento.email }}</div>
+    <div style="margin-top: 10px;">Telefone: {{ agendamento.telefone }}</div>
+    <div style="margin-top: 10px;">Medico: {{ agendamento.nomeMedico }}</div>
+    <div style="margin-top: 10px;">Especialidade: {{ agendamento.especialidade }}</div>
+    <div style="margin-top: 10px;">Data/hora: {{ agendamento.dataConsulta }} - {{ agendamento.horarioConsulta }}</div>
   </div>
 </div>

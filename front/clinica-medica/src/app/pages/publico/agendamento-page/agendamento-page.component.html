@@ -1,1 +1,121 @@
-<p>agendamento-page works!</p>
+<div class="all">
+  <div class="login-box">
+    <div class="title">
+      <h1>Novo Agendamento</h1>
+    </div>
+
+    <form
+      novalidate
+      name="loginForm"
+      [formGroup]="novoAgendamentoForm"
+      (ngSubmit)="cadastrarAgendamento()"
+    >
+      <div class="inputs">
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nome"
+          />
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="email"
+          />
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="telefone"
+          />
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Especialidade</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="especialidade"
+          />
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Nome Medico</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nomeMedico"
+          />
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Data Consulta</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="dataConsulta"
+            placeholder=""
+          />
+        </mat-form-field>
+
+        <mat-form-field
+          color="primary"
+          [floatLabel]="'always'"
+          appearance="outline"
+        >
+          <mat-label>Horario Consulta</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="horarioConsulta"
+          />
+        </mat-form-field>
+
+      </div>
+      <div class="submit">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="novoAgendamentoForm.invalid"
+        >
+          Cadastrar
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

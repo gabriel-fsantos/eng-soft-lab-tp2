@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
+import { env } from '../../config'
 
 const funcionarioSchema = new Schema({
   email: {
@@ -56,7 +57,7 @@ const funcionarioSchema = new Schema({
     minlength: 6
   },
   dataContrato: {
-    type: Date,
+    type: String,
     required: true
   },
   senha: {
@@ -73,6 +74,18 @@ const funcionarioSchema = new Schema({
   timestamps: true
 })
 
+funcionarioSchema.pre('save', function (next) {
+  if (!this.isModified('senha')) return next()
+
+  /* istanbul ignore next */
+  const rounds = env === 'test' ? 1 : 9
+
+  bcrypt.hash(this.senha, rounds).then((hash) => {
+    this.senha = hash
+    next()
+  }).catch(next)
+})
+
 funcionarioSchema.methods = {
   view (full) {
     const view = {}
@@ -87,8 +100,8 @@ funcionarioSchema.methods = {
     return view
   },
 
-  authenticate (password) {
-    return bcrypt.compare(password, this.password).then((valid) => valid ? this : false)
+  authenticate (senha) {
+    return bcrypt.compare(senha, this.senha).then((valid) => valid ? this : false)
   }
 
 }
